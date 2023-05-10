@@ -1,0 +1,46 @@
+# Editor configuration, see http://editorconfig.org
+[*]
+end_of_line = lf
+tab_width = 2
+indent_size = 2
+indent_style = space
+ij_continuation_indent_size = 2
+
+ij_javascript_enforce_trailing_comma = whenmultiline
+ij_typescript_enforce_trailing_comma = whenmultiline
+
+ij_javascript_force_semicolon_style = true
+ij_typescript_force_semicolon_style = true
+
+ij_css_use_double_quotes = false
+ij_typescript_use_double_quotes = false
+ij_javascript_use_double_quotes = false
+ij_javascript_force_quote_style = true
+ij_typescript_force_quote_style = true
+
+ij_javascript_spaces_within_object_type_braces = false
+ij_typescript_spaces_within_object_type_braces = false
+ij_javascript_spaces_within_object_literal_braces = false
+ij_typescript_spaces_within_object_literal_braces = false
+ij_javascript_spaces_within_imports = false
+ij_typescript_spaces_within_imports = false
+ij_javascript_spaces_within_brackets = false
+ij_typescript_spaces_within_brackets = false
+
+ij_visual_guides = 140
+max_line_length = 140
+
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+[{*.ts,*.tsx,*.js,*.jsx}]
+tab_width = 4
+indent_size = tab
+indent_style = tab
+ij_continuation_indent_size = 4
+
+[*.json]
+charset = utf-8
+
+[*.md]
+max_line_length = off

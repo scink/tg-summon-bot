@@ -1,0 +1,26 @@
+{
+  "name": "summon-bot",
+  "version": "0.0.1",
+  "description": "bot to summon all chat participants",
+  "main": "index.js",
+  "repository": "https://github.com/scink/summon-bot.git",
+  "author": "scink",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "@types/node": "^20.1.2",
+    "@types/yargs": "^17.0.24",
+    "dotenv": "^16.0.3",
+    "eslint": "^8.40.0",
+    "eslint-config-sct": "git+ssh://git@github.com/scink/eslint-config-sct.git",
+    "nodemon": "^2.0.22",
+    "prettier": "^2.8.8",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.4",
+    "yargs": "^17.7.2"
+  },
+  "dependencies": {
+    "fp-ts": "^2.15.0",
+    "telegraf": "^4.12.2"
+  }
+}
