@@ -5,7 +5,7 @@ import {getArg} from './utils';
 dotenv.config();
 dotenv.config({path: '.env.local', override: true});
 
-const token = getArg('TELEGRAM_TOKEN')(process);
+const token = getArg(process, 'TELEGRAM_TOKEN');
 
 if (option.isNone(token)) {
 	throw new Error('Provide the token!');

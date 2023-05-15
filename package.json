@@ -8,8 +8,8 @@
   "license": "MIT",
   "private": true,
   "devDependencies": {
+    "@grammyjs/types": "^3.1.1",
     "@types/node": "^20.1.2",
-    "@types/node-telegram-bot-api": "^0.61.6",
     "@types/yargs": "^17.0.24",
     "dotenv": "^16.0.3",
     "eslint": "^8.40.0",
@@ -21,9 +21,9 @@
     "yargs": "^17.7.2"
   },
   "dependencies": {
+    "@grammyjs/chat-members": "^1.0.10",
+    "@grammyjs/storage-free": "^2.2.0",
     "fp-ts": "^2.15.0",
-    "grammy": "^1.16.0",
-    "node-telegram-bot-api": "^0.61.0",
-    "telegraf": "^4.12.2"
+    "grammy": "^1.16.0"
   }
 }
