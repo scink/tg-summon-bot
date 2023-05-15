@@ -13,7 +13,7 @@
     "@types/yargs": "^17.0.24",
     "dotenv": "^16.0.3",
     "eslint": "^8.40.0",
-    "eslint-config-sct": "git+ssh://git@github.com/scink/eslint-config-sct.git",
+    "eslint-config-sct": "https://github.com/scink/eslint-config-sct.git",
     "nodemon": "^2.0.22",
     "prettier": "^2.8.8",
     "ts-node": "^10.9.1",
