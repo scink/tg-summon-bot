@@ -19,8 +19,8 @@ export const getBot = (token: string) => {
 		chatMembers(adapter),
 		session({initial: () => ({toSummon: ''}), storage: freeStorage<SessionData>(bot.token)})
 	);
-	bot.command('right', async (ctx) => {
-		ctx.session.toSummon = ctx.message?.text || '';
+	bot.command('write', async (ctx) => {
+		ctx.session.toSummon = ctx.message?.text?.split('/write')[1] || '';
 		return ctx.reply('roger that');
 	});
 
