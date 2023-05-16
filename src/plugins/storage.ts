@@ -1,5 +1,5 @@
 import {session} from 'grammy';
-import {ISession, MongoDBAdapter} from '@grammyjs/storage-mongodb/dist/esm/mod';
+import {ISession, MongoDBAdapter} from '@grammyjs/storage-mongodb';
 import {DatabaseDep} from '../utils/deps';
 import {BotContext} from './index';
 

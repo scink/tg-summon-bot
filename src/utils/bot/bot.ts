@@ -1,4 +1,4 @@
-import {CommandMiddleware, Middleware} from 'grammy/out/composer';
+import {CommandMiddleware, HearsMiddleware, Middleware} from 'grammy/out/composer';
 import {Bot as BotGrammy} from 'grammy';
 import {TgTokenDep} from '../deps';
 import {Effect} from '../type';
@@ -7,10 +7,7 @@ import {MaybeArray, StringWithSuggestions} from 'grammy/out/context';
 import {ErrorHandler, PollingOptions} from 'grammy/out/bot';
 import {AppBot, BotContext} from '../../plugins';
 
-const create = ({tgToken}: TgTokenDep) => {
-	console.log('bott.create');
-	return new BotGrammy<BotContext>(tgToken);
-};
+const create = ({tgToken}: TgTokenDep) => new BotGrammy<BotContext>(tgToken);
 const effect = (f: Effect<AppBot>) => (bot: AppBot) => {
 	f(bot);
 	return bot;
@@ -20,7 +17,8 @@ const use = (...middleware: Array<Middleware<BotContext>>) => effect((bot) => bo
 
 const on = <Q extends FilterQuery>(filter: Q | Array<Q>, ...middleware: Array<Middleware<Filter<BotContext, Q>>>) =>
 	effect((bot) => bot.on(filter, ...middleware));
-
+const hears = (trigger: MaybeArray<string | RegExp>, ...middleware: Array<HearsMiddleware<BotContext>>) =>
+	effect((bot) => bot.hears(trigger, ...middleware));
 const command = <S extends string>(
 	command: MaybeArray<StringWithSuggestions<S | 'start' | 'help' | 'settings'>>,
 	...middleware: Array<CommandMiddleware<BotContext>>
@@ -33,6 +31,7 @@ export const bot = {
 	create,
 	effect,
 	on,
+	hears,
 	command,
 	catch: catchError,
 	start,
