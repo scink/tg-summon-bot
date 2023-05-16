@@ -2085,11 +2085,6 @@ svg-tags@1:
   resolved "https://registry.yarnpkg.com/svg-tags/-/svg-tags-1.0.0.tgz#58f71cee3bd519b59d4b2a843b6c7de64ac04764"
   integrity sha512-ovssysQTa+luh7A5Weu3Rta6FJlFBBbInjOh722LIt6klpU2/HtdUbszju/G4devcvk8PGt7FCLv5wftu3THUA==
 
-telegraf-middleware-console-time@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/telegraf-middleware-console-time/-/telegraf-middleware-console-time-2.1.0.tgz#9f3ddcfc1117d783e33fc44e07088d78e9b74288"
-  integrity sha512-qHe5MlSPy6+v2OJ01M0breFDdPhXpCyYvUuGNyDfYrDssDFauAbl7pQAXFGqTQYtKerZsJEyueiHGQisfT1P7Q==
-
 text-table@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/text-table/-/text-table-0.2.0.tgz#7f5ee823ae805207c00af2df4a84ec3fcfa570b4"

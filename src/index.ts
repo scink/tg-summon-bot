@@ -12,12 +12,14 @@ dotenv.config({path: '.env.local', override: true});
 const botWithDeps = pipe(
 	getVariable(process),
 	taskEither.fromEither,
-	taskEither.chain(({mongoUrl, tgToken}) =>
-		pipe(
+	taskEither.chain(({mongoUrl, tgToken}) => {
+		console.log(`telegram token is ${tgToken}`);
+		console.log(`mongo url is ${mongoUrl}`);
+		return pipe(
 			database.create(mongoUrl, 'botDB'),
 			taskEither.map((database) => ({database, tgToken}))
-		)
-	),
+		);
+	}),
 	taskEither.map(botInstance)
 );
 
