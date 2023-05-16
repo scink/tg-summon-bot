@@ -11,19 +11,21 @@
     "@grammyjs/types": "^3.1.1",
     "@types/node": "^20.1.2",
     "@types/yargs": "^17.0.24",
-    "dotenv": "^16.0.3",
     "eslint": "^8.40.0",
     "eslint-config-sct": "https://github.com/scink/eslint-config-sct.git",
-    "nodemon": "^2.0.22",
     "prettier": "^2.8.8",
-    "ts-node": "^10.9.1",
-    "typescript": "^5.0.4",
     "yargs": "^17.7.2"
   },
   "dependencies": {
+    "@devexperts/utils": "^1.0.0-alpha.14",
     "@grammyjs/chat-members": "^1.0.10",
-    "@grammyjs/storage-free": "^2.2.0",
+    "@grammyjs/storage-mongodb": "^2.2.0",
+    "dotenv": "^16.0.3",
     "fp-ts": "^2.15.0",
-    "grammy": "^1.16.0"
+    "grammy": "^1.16.0",
+    "mongodb": "^5.5.0",
+    "nodemon": "^2.0.22",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.4"
   }
 }

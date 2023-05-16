@@ -27,8 +27,8 @@ ij_typescript_spaces_within_imports = false
 ij_javascript_spaces_within_brackets = false
 ij_typescript_spaces_within_brackets = false
 
-ij_visual_guides = 140
-max_line_length = 140
+ij_visual_guides = 120
+max_line_length = 120
 
 insert_final_newline = true
 trim_trailing_whitespace = true
