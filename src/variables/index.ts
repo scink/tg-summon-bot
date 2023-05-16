@@ -6,15 +6,7 @@ import {apply, either} from 'fp-ts';
 export const getVariable = pipe(
 	reader.sequenceS({
 		tgToken: getArg('TELEGRAM_TOKEN'),
-		mongo: pipe(
-			reader.sequenceS({
-				host: getArg('MONGO_HOST'),
-				password: getArg('MONGO_PASSWORD'),
-				port: getArg('MONGO_PORT'),
-				user: getArg('MONGO_USER'),
-			}),
-			reader.map(apply.sequenceS(either.Apply))
-		),
+		mongoUrl: getArg('MONGO_URL'),
 	}),
 	reader.map(apply.sequenceS(either.Apply))
 );

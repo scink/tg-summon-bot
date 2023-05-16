@@ -14,6 +14,3 @@ export const memoize = <F extends Func<any, any>>(f: F): F => {
 		return memory.get(key) || res;
 	}) as F;
 };
-
-export const getMongoUrl = (mongo: {user: string; password: string; host: string; port: string}) =>
-	`mongodb://${mongo.user}:${mongo.password}@${mongo.host}:${mongo.port}`;

@@ -5,10 +5,10 @@ export const addSummonFunction = bot.effect(
 	flow(
 		bot.command('write', async (ctx) => {
 			ctx.session.toSummon = ctx.match;
-			return ctx.reply('roger that', {reply_to_message_id: ctx.message?.message_id});
+			return ctx.reply('Принял', {reply_to_message_id: ctx.message?.message_id});
 		}),
 		bot.hears(/@all/gm, (ctx) =>
-			ctx.reply(`${ctx.session.toSummon}, you've been summoned`, {
+			ctx.reply(`${ctx.session.toSummon}, слыште`, {
 				reply_to_message_id: ctx.message?.message_id,
 			})
 		)
