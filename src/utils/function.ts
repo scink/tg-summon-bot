@@ -14,3 +14,10 @@ export const memoize = <F extends Func<any, any>>(f: F): F => {
 		return memory.get(key) || res;
 	}) as F;
 };
+
+export const consolelog =
+	(text?: string) =>
+	<A>(a: A): A => {
+		console.log(`${text || '-----------------------'}\n`, a);
+		return a;
+	};

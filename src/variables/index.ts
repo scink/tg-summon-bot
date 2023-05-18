@@ -7,6 +7,7 @@ export const getVariable = pipe(
 	reader.sequenceS({
 		tgToken: getArg('TELEGRAM_TOKEN'),
 		mongoUrl: getArg('MONGO_URL'),
+		mongoDbName: getArg('MONGO_DB_NAME'),
 	}),
-	reader.map(apply.sequenceS(either.Apply))
+	reader.map(apply.sequenceS(either.Apply)),
 );

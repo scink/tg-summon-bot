@@ -9,12 +9,14 @@
   "private": true,
   "devDependencies": {
     "@grammyjs/types": "^3.1.1",
+    "@types/jest": "^29.5.1",
     "@types/node": "^20.1.2",
     "@types/yargs": "^17.0.24",
     "eslint": "^8.40.0",
     "eslint-config-sct": "https://github.com/scink/eslint-config-sct.git",
+    "jest": "^29.5.0",
     "prettier": "^2.8.8",
-    "yargs": "^17.7.2"
+    "ts-jest": "^29.1.0"
   },
   "dependencies": {
     "@devexperts/utils": "^1.0.0-alpha.14",
@@ -24,8 +26,10 @@
     "fp-ts": "^2.15.0",
     "grammy": "^1.16.0",
     "mongodb": "^5.5.0",
+    "monocle-ts": "^2.3.13",
     "nodemon": "^2.0.22",
     "ts-node": "^10.9.1",
-    "typescript": "^5.0.4"
+    "typescript": "^5.0.4",
+    "yargs": "^17.7.2"
   }
 }

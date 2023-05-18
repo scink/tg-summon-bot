@@ -12,13 +12,13 @@ dotenv.config({path: '.env.local', override: true});
 const botWithDeps = pipe(
 	getVariable(process),
 	taskEither.fromEither,
-	taskEither.chain(({mongoUrl, tgToken}) =>
+	taskEither.chain(({mongoUrl, tgToken, mongoDbName}) =>
 		pipe(
-			database.create(mongoUrl, 'botDB'),
-			taskEither.map((database) => ({database, tgToken}))
-		)
+			database.create(mongoUrl, mongoDbName),
+			taskEither.map((database) => ({database, tgToken, collectionName: 'botData'})),
+		),
 	),
-	taskEither.map(botInstance)
+	taskEither.map(botInstance),
 );
 
 runUnsafe(botWithDeps);

@@ -18,7 +18,7 @@ const sequenceS =
 	(context) =>
 		pipe(
 			Object.entries(as as Record<string, ReaderAny>),
-			array.reduce({} as ReturnType<Sequenced<As>>, (acc, [key, value]) => ({...acc, [key]: value(context)}))
+			array.reduce({} as ReturnType<Sequenced<As>>, (acc, [key, value]) => ({...acc, [key]: value(context)})),
 		);
 
 export type Reader<R, A> = ReaderFPTS<R, A>;
