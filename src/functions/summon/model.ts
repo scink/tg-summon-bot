@@ -86,3 +86,10 @@ export const addByUserIfThereIsNo = (ctx: CommandContext<BotContext>) => {
 	}
 };
 export const joinUsers = (users: Array<string>): string => users.join(', ');
+export const addUserCommand = (ctx: CommandContext<BotContext>, user: string = ctx.match) => {
+	if (hasThisUser(ctx)) {
+		return ctx.reply(`${user} уже в призывном списке`);
+	}
+	ctx.session = addUser({chatId: ctx.chat.id, user})(ctx.session);
+	return ctx.reply('Добавил');
+};

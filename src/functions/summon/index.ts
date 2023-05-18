@@ -3,7 +3,14 @@ import {flow, pipe} from 'fp-ts/function';
 import {array} from '../../utils/array';
 import {option, predicate, string} from 'fp-ts';
 import {pluck} from '../../utils/pluck';
-import {addByUserIfThereIsNo, addUser, hasThisUser, joinUsers, lensSessionDataToUsers, removeUser} from './model';
+import {
+	addByUserIfThereIsNo,
+	addUserCommand,
+	hasThisUser,
+	joinUsers,
+	lensSessionDataToUsers,
+	removeUser,
+} from './model';
 
 export const addSummonFunction = bot.effect(
 	flow(
@@ -24,11 +31,7 @@ export const addSummonFunction = bot.effect(
 		}),
 		bot.command('add', (ctx) => {
 			addByUserIfThereIsNo(ctx);
-			if (hasThisUser(ctx)) {
-				return ctx.reply(`${ctx.match} уже в призывном списке`);
-			}
-			ctx.session = addUser({chatId: ctx.chat.id, user: ctx.match})(ctx.session);
-			return ctx.reply('Добавил');
+			return addUserCommand(ctx);
 		}),
 		bot.command('remove', (ctx) => {
 			addByUserIfThereIsNo(ctx);
@@ -55,6 +58,11 @@ export const addSummonFunction = bot.effect(
 						reply_to_message_id: ctx.message?.message_id,
 					}),
 			);
+		}),
+		bot.command('enlist', async (ctx) => {
+			addByUserIfThereIsNo(ctx);
+			const user = `@${(await ctx.chatMembers.getChatMember(ctx.chat.id)).user.username}`;
+			return addUserCommand(ctx, user);
 		}),
 		bot.hears(/@all/gm, (ctx) =>
 			pipe(
