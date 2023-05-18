@@ -15,10 +15,10 @@ export const addSummonFunction = bot.effect(
 				ctx.session.byChat,
 				array.findFirst((so) => so.chatId === ctx.chat.id),
 				option.map(pluck('users')),
-				option.map((users) => users.join(', ')),
+				option.map(joinUsers),
 				option.getOrElse(() => 'хрен пойми кого'),
 			);
-			return ctx.reply(`Принял.\nТеперь зовем ${writtenUsers}`, {
+			return ctx.reply(`Принял.\nТеперь призываем ${writtenUsers}`, {
 				reply_to_message_id: ctx.message?.message_id,
 			});
 		}),
@@ -33,9 +33,14 @@ export const addSummonFunction = bot.effect(
 		bot.command('remove', (ctx) => {
 			addByUserIfThereIsNo(ctx);
 			if (hasThisUser(ctx)) {
-				return ctx.reply('Хм... ни знаю таких');
+				ctx.session = removeUser({chatId: ctx.chat.id, user: ctx.match})(ctx.session);
+				return ctx.reply(`Боец ${ctx.match} признан негодным к службе`, {
+					reply_to_message_id: ctx.message?.message_id,
+				});
 			}
-			ctx.session = removeUser({chatId: ctx.chat.id, user: ctx.match})(ctx.session);
+			return ctx.reply(`Хм... ${ctx.match} не прикреплен к нашему военкомату`, {
+				reply_to_message_id: ctx.message?.message_id,
+			});
 		}),
 		bot.command('who', (ctx) => {
 			addByUserIfThereIsNo(ctx);
@@ -57,7 +62,7 @@ export const addSummonFunction = bot.effect(
 				lensSessionDataToUsers({chatId: ctx.chat.id}).getOption,
 				option.match(() => ctx.session.toSummon, joinUsers),
 				(users) =>
-					ctx.reply(`${users}, слыште`, {
+					ctx.reply(`Посупил приказ мобилизовать ${users}. Родина мать зовет!`, {
 						reply_to_message_id: ctx.message?.message_id,
 					}),
 			),
