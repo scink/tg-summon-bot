@@ -9,7 +9,7 @@ const createClient = memoize((url: string) => new MongoClient(url));
 const connect = (client: MongoClient) =>
 	taskEither.tryCatch(
 		() => client.connect(),
-		() => new Error('Could not connect to database')
+		() => new Error('Could not connect to database'),
 	);
 const createDatabase = (name: string, options?: DbOptions) => (client: MongoClient) => client.db(name, options);
 //endregion

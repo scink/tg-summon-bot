@@ -11,12 +11,12 @@ export const getArg =
 		const argsVariable = option.fromNullable(
 			yargs(hideBin(process.argv))
 				.options({[key]: {type: 'string'}})
-				.parseSync()[key]
+				.parseSync()[key],
 		);
 
 		return pipe(
 			argsVariable,
 			option.alt(() => dotenvVariable),
-			either.fromOption(() => new Error(`Variable ${key} was not provided`))
+			either.fromOption(() => new Error(`Variable ${key} was not provided`)),
 		);
 	};
