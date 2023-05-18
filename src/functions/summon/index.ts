@@ -37,8 +37,9 @@ export const addSummonFunction = bot.effect(
 			}
 			ctx.session = removeUser({chatId: ctx.chat.id, user: ctx.match})(ctx.session);
 		}),
-		bot.command('who', (ctx) =>
-			pipe(
+		bot.command('who', (ctx) => {
+			addByUserIfThereIsNo(ctx);
+			return pipe(
 				ctx.session,
 				lensSessionDataToUsers({chatId: ctx.chat.id}).getOption,
 				option.map(joinUsers),
@@ -48,8 +49,8 @@ export const addSummonFunction = bot.effect(
 					ctx.reply(`В случае мобилизации призывать: ${users}`, {
 						reply_to_message_id: ctx.message?.message_id,
 					}),
-			),
-		),
+			);
+		}),
 		bot.hears(/@all/gm, (ctx) =>
 			pipe(
 				ctx.session,
