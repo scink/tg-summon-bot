@@ -13,6 +13,7 @@ import {Reader} from 'fp-ts/Reader';
 import {Func} from '../../utils/type';
 import {Predicate} from 'fp-ts/Predicate';
 import {isNotNullable} from '@devexperts/utils/dist/object/object';
+import {Filter} from 'grammy/out/filter';
 
 //region types
 interface WithUser {
@@ -77,8 +78,14 @@ const hasUser: Reader<WithUser & WithChatId, Predicate<SessionData>> = reader.co
 	reader.ask<WithUser>(),
 	(lens, {user}) => flow(lens.getOption, option.isSome),
 );
-export const hasThisUser = (ctx: CommandContext<BotContext>) =>
-	hasUser({chatId: ctx.chat.id, user: ctx.match})(ctx.session);
+export const hasThisUser = (ctx: CommandContext<BotContext>, user: string) =>
+	hasUser({chatId: ctx.chat.id, user})(ctx.session);
+export const isJoin = (ctx: Filter<BotContext, 'chat_member'>): boolean =>
+	ctx.update.chat_member.old_chat_member.status === 'left' &&
+	ctx.update.chat_member.new_chat_member.status === 'member';
+export const isLeft = (ctx: Filter<BotContext, 'chat_member'>): boolean =>
+	ctx.update.chat_member.new_chat_member.status === 'left' ||
+	ctx.update.chat_member.new_chat_member.status === 'kicked';
 //endregion
 export const addByUserIfThereIsNo = (ctx: CommandContext<BotContext>) => {
 	if (!isNotNullable(ctx.session.byChat)) {
@@ -87,9 +94,20 @@ export const addByUserIfThereIsNo = (ctx: CommandContext<BotContext>) => {
 };
 export const joinUsers = (users: Array<string>): string => users.join(', ');
 export const addUserCommand = (ctx: CommandContext<BotContext>, user: string = ctx.match) => {
-	if (hasThisUser(ctx)) {
+	if (hasThisUser(ctx, user)) {
 		return ctx.reply(`${user} уже в призывном списке`);
 	}
 	ctx.session = addUser({chatId: ctx.chat.id, user})(ctx.session);
 	return ctx.reply('Добавил');
+};
+export const removeUserCommand = (ctx: CommandContext<BotContext>, user: string = ctx.match) => {
+	if (hasThisUser(ctx, user)) {
+		ctx.session = removeUser({chatId: ctx.chat.id, user})(ctx.session);
+		return ctx.reply(`Боец ${user} признан негодным к службе`, {
+			reply_to_message_id: ctx.message?.message_id,
+		});
+	}
+	return ctx.reply(`Хм... ${user} не прикреплен к нашему военкомату`, {
+		reply_to_message_id: ctx.message?.message_id,
+	});
 };
