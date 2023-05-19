@@ -31,6 +31,9 @@ export const addSummonFunction = bot.effect(
 		}),
 		bot.command('add', (ctx) => {
 			addByUserIfThereIsNo(ctx);
+			if (ctx.message?.reply_to_message) {
+				return addUserCommand(ctx, `@${ctx.message.reply_to_message.from?.username}`);
+			}
 			return addUserCommand(ctx);
 		}),
 		bot.command('remove', (ctx) => {
