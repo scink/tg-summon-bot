@@ -67,7 +67,7 @@ export const addSummonFunction = bot.effect(
 				lensSessionDataToUsers({chatId: ctx.chat.id}).getOption,
 				option.match(() => ctx.session.toSummon, joinUsers),
 				(users) =>
-					ctx.reply(`Посупил приказ мобилизовать ${users}. Родина мать зовет!`, {
+					ctx.reply(`Калюмбасеры, ${users}. Общий сбор!`, {
 						reply_to_message_id: ctx.message?.message_id,
 					}),
 			),
